@@ -104,6 +104,18 @@ class LinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index === 0) return this.shift();
+    if (index === this.length) return this.pop();
+    if (index < 0 || index >= this.length) return undefined;
+    const before = this.get(index - 1);
+    const temp = before.next;
+    before.next = temp.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -160,6 +172,13 @@ describe('LinkedList', () => {
     newLinkedList.push(9);
     newLinkedList.insert(2, 7);
     expect(newLinkedList.tail.value).to.equal(7);
+    done();
+  });
+
+  xit('should remove the value based on index', done => {
+    newLinkedList.unshift(7);
+    newLinkedList.unshift(6);
+    expect(newLinkedList.remove(1).value).to.equal(7);
     done();
   });
 });
