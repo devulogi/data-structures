@@ -72,6 +72,17 @@ class LinkedList {
     temp.next = null;
     return temp;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+    let temp = this.head;
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+    return temp;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -110,6 +121,12 @@ describe('LinkedList', () => {
   xit('should remove value at the beginning', done => {
     newLinkedList.unshift(7);
     expect(newLinkedList.shift().value).to.equal(7);
+    done();
+  });
+
+  xit('should get the value by index', done => {
+    newLinkedList.push(7);
+    expect(newLinkedList.get(1).value).to.equal(7);
     done();
   });
 });
