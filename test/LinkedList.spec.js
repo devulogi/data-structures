@@ -83,6 +83,15 @@ class LinkedList {
     }
     return temp;
   }
+
+  set(index, value) {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+    const temp = this.get(index);
+    temp.value = value;
+    return temp;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -127,6 +136,11 @@ describe('LinkedList', () => {
   xit('should get the value by index', done => {
     newLinkedList.push(7);
     expect(newLinkedList.get(1).value).to.equal(7);
+    done();
+  });
+
+  xit('should update the value based on index', done => {
+    expect(newLinkedList.set(0, 7).value).to.equal(7);
     done();
   });
 });
