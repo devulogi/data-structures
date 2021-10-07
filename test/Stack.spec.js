@@ -25,6 +25,15 @@ class Stack {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (this.length === 0) return undefined;
+    let temp = this.top;
+    this.top = this.top.next;
+    temp.next = null;
+    this.length--;
+    return temp;
+  }
 }
 
 let newStack = null;
@@ -44,6 +53,12 @@ describe('Stack', () => {
   xit('should put value on top of the stack', done => {
     expect(newStack.push(9).top.value).to.equal(9);
     expect(newStack.length).to.equal(2);
+    done();
+  });
+
+  xit('should remove value on top of the stack', done => {
+    expect(newStack.pop().value).to.equal(8);
+    expect(newStack.length).to.equal(0);
     done();
   });
 });
