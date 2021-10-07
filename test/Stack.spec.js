@@ -13,6 +13,18 @@ class Stack {
     this.top = newNode;
     this.length = 1;
   }
+
+  push(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.top = newNode;
+    } else {
+      newNode.next = this.top;
+      this.top = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 let newStack = null;
@@ -22,10 +34,16 @@ beforeEach(() => {
 });
 
 describe('Stack', () => {
-  it('should create a new stack instance', done => {
+  xit('should create a new stack instance', done => {
     const nStack = new Stack(7);
     expect(nStack.top.value).to.equal(7);
     expect(nStack.length).to.equal(1);
+    done();
+  });
+
+  xit('should put value on top of the stack', done => {
+    expect(newStack.push(9).top.value).to.equal(9);
+    expect(newStack.length).to.equal(2);
     done();
   });
 });
