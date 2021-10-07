@@ -31,6 +31,16 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (this.length === 0) return undefined;
+    const temp = this.tail;
+    this.tail = this.tail.prev;
+    this.tail.next = null;
+    temp.prev = null;
+    this.length--;
+    return this;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -48,8 +58,15 @@ describe('DoublyLinkedList', () => {
     done();
   });
 
-  it('should add a new value to the end of the list', done => {
+  xit('should add a new value to the end of the list', done => {
     expect(newDoublyLinkedList.push(9).tail.value).to.equal(9);
+    done();
+  });
+
+  it('should pop the last value of the list', done => {
+    newDoublyLinkedList.push(9);
+    expect(newDoublyLinkedList.pop().tail.value).to.equal(8);
+    expect(newDoublyLinkedList.length).to.equal(1);
     done();
   });
 });
