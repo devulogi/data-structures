@@ -27,6 +27,14 @@ class Queue {
     this.length++;
     return this;
   }
+
+  dequeue() {
+    if (this.length === 0) return false;
+    let temp = this.last;
+    this.last = this.last.next;
+    this.length--;
+    return temp;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -46,6 +54,12 @@ describe('Queue', () => {
   xit('should add a new node to the end', done => {
     expect(queue.enqueue(9).last.value).to.equal(9);
     expect(queue.length).to.equal(2);
+    done();
+  });
+
+  it('should remove the last value', done => {
+    expect(queue.enqueue(9).dequeue().value).to.equal(9);
+    expect(queue.length).to.equal(1);
     done();
   });
 });
