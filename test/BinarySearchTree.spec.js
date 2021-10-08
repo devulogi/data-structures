@@ -66,4 +66,11 @@ describe('Binary Search Tree', () => {
     expect(bst.root.value).to.equal(2);
     done();
   });
+
+  it('should insert new node', done => {
+    bst.insert(2);
+    bst.insert(3);
+    expect(bst.root.right.value).to.equal(3);
+    done();
+  });
 });
