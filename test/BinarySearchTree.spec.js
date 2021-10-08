@@ -74,6 +74,14 @@ class BinarySearchTree {
     // return false if value is not found
     return false;
   }
+
+  // create new node
+  // check if tree is empty; if yes, set root to new node and return instance.
+  // track the current node
+  // run a loop to check param value with tracked node value
+  // if param value < tracked node value, check left and compare for equality.
+  // if value is found, delete node value
+  delete(value) {}
 }
 
 // ------------------------------------------------------- //
@@ -105,7 +113,7 @@ describe('Binary Search Tree', () => {
     done();
   });
 
-  it('should lookup the tree for values existence', done => {
+  xit('should lookup the tree for values existence', done => {
     bst.insert(7);
     bst.insert(8);
     expect(bst.contains(7)).to.be.true;
