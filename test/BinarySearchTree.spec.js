@@ -13,6 +13,11 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  /**
+   * insert value to tree
+   * @param {*} value
+   * @returns istance of BST class
+   */
   insert(value) {
     // create a new node
     const newNode = new Node(value);
@@ -43,6 +48,32 @@ class BinarySearchTree {
       }
     }
   }
+
+  /**
+   * look for the value in the tree
+   * @param {*} value
+   * @returns boolean
+   */
+  contains(value) {
+    // if tree is empty return false
+    if (this.root === null) {
+      return false;
+    }
+    // track current node value
+    let temp = this.root;
+    // loop through the tree until the value is found
+    while (temp) {
+      if (temp.value > value) {
+        temp = temp.left;
+      } else if (temp.value < value) {
+        temp = temp.right;
+      } else {
+        return true;
+      }
+    }
+    // return false if value is not found
+    return false;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -67,10 +98,18 @@ describe('Binary Search Tree', () => {
     done();
   });
 
-  it('should insert new node', done => {
+  xit('should insert new node', done => {
     bst.insert(2);
     bst.insert(3);
     expect(bst.root.right.value).to.equal(3);
+    done();
+  });
+
+  it('should lookup the tree for values existence', done => {
+    bst.insert(7);
+    bst.insert(8);
+    expect(bst.contains(7)).to.be.true;
+    expect(bst.contains(9)).to.be.false;
     done();
   });
 });
