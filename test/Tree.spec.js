@@ -24,6 +24,7 @@ beforeEach(() => {
 
 describe('Binary Search Tree', () => {
   xit('should create instance of BST', done => {
+    expect(bst).to.be.an.instanceOf(BinarySearchTree);
     expect(bst.root).to.equal(null);
     done();
   });
