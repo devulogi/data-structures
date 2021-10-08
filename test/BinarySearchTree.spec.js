@@ -107,17 +107,13 @@ describe('Binary Search Tree', () => {
   });
 
   xit('should insert new node', done => {
-    bst.insert(2);
-    bst.insert(3);
-    expect(bst.root.right.value).to.equal(3);
+    expect(bst.insert(2).insert(3).root.right.value).to.equal(3);
     done();
   });
 
   xit('should lookup the tree for values existence', done => {
-    bst.insert(7);
-    bst.insert(8);
-    expect(bst.contains(7)).to.be.true;
-    expect(bst.contains(9)).to.be.false;
+    expect(bst.insert(7).contains(9)).to.be.false;
+    expect(bst.insert(8).contains(7)).to.be.true;
     done();
   });
 });
