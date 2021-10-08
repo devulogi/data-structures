@@ -56,7 +56,14 @@ beforeEach(() => {
 describe('Binary Search Tree', () => {
   xit('should create instance of BST', done => {
     expect(bst).to.be.an.instanceOf(BinarySearchTree);
-    expect(bst.root).to.equal(null);
+    expect(bst.root).to.be.null;
+    done();
+  });
+
+  xit('should store new node root', done => {
+    expect(bst.root).to.be.null;
+    expect(bst.insert(2)).to.be.an.instanceOf(BinarySearchTree);
+    expect(bst.root.value).to.equal(2);
     done();
   });
 });
