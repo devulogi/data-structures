@@ -11,6 +11,11 @@ class Node {
 class BinarySearchTree {
   constructor() {
     this.root = null;
+    this.count = 0;
+  }
+
+  size() {
+    return this.count;
   }
 
   /**
@@ -19,6 +24,7 @@ class BinarySearchTree {
    * @returns istance of BST class
    */
   insert(value) {
+    this.count++;
     // create a new node
     const newNode = new Node(value);
     // if root is null, assign new node to root
@@ -31,7 +37,7 @@ class BinarySearchTree {
     while (true) {
       // return undefined, if current node and new node's value is the same
       if (temp.value === newNode.value) {
-         return undefined;
+        return undefined;
       }
       // compare value's of current node and new node to decide which branch to go (L or R)
       if (temp.value > newNode.value) {
@@ -41,7 +47,7 @@ class BinarySearchTree {
           return this;
         }
         temp = temp.left;
-      }  // if current node branch is "null", assign new node to right subtree
+      } // if current node branch is "null", assign new node to right subtree
       else {
         if (temp.right === null) {
           temp.right = newNode;
@@ -76,6 +82,22 @@ class BinarySearchTree {
     }
     // return false if value is not found
     return false;
+  }
+
+  min() {
+    let current = this.root;
+    while (current.left) {
+      current = current.left;
+    }
+    return current.value;
+  }
+
+  max() {
+    let current = this.root;
+    while (current.right) {
+      current = current.right;
+    }
+    return current.value;
   }
 }
 
