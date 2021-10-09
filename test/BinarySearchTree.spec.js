@@ -133,4 +133,19 @@ describe('Binary Search Tree', () => {
     expect(bst.insert(8).contains(7)).to.be.true;
     done();
   });
+
+  xit('should return node size', done => {
+    expect(bst.insert(2).insert(1).insert(3).size()).to.equal(3);
+    done();
+  });
+
+  xit('should return smallest value in the tree', done => {
+    expect(bst.insert(2).insert(1).insert(3).min()).to.equal(1);
+    done();
+  });
+
+  xit('should return the largest value in the tree', done => {
+    expect(bst.insert(2).insert(1).insert(3).max()).to.equal(3);
+    done();
+  });
 });
