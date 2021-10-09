@@ -30,16 +30,19 @@ class BinarySearchTree {
     let temp = this.root;
     while (true) {
       // return undefined, if current node and new node's value is the same
-      if (temp.value === newNode.value) return undefined;
+      if (temp.value === newNode.value) {
+         return undefined;
+      }
       // compare value's of current node and new node to decide which branch to go (L or R)
       if (temp.value > newNode.value) {
-        // if current  node branch is "null", assign new node
+        // if current  node branch is "null", assign new node to left subtree
         if (temp.left === null) {
           temp.left = newNode;
           return this;
         }
         temp = temp.left;
-      } else {
+      }  // if current node branch is "null", assign new node to right subtree
+      else {
         if (temp.right === null) {
           temp.right = newNode;
           return this;
@@ -74,14 +77,6 @@ class BinarySearchTree {
     // return false if value is not found
     return false;
   }
-
-  // create new node
-  // check if tree is empty; if yes, set root to new node and return instance.
-  // track the current node
-  // run a loop to check param value with tracked node value
-  // if param value < tracked node value, check left and compare for equality.
-  // if value is found, delete node value
-  delete(value) {}
 }
 
 // ------------------------------------------------------- //
