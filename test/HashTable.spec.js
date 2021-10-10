@@ -5,12 +5,12 @@ class HashTable {
     this.table = new Array(size);
   }
 
-  _hash(key, size) {
+  _hash(key) {
     let hashedKey = 0;
     for (let i = 0; i < key.length; i++) {
       hashedKey = key.charCodeAt(i);
     }
-    return (this.table.length + hashedKey * size) % 163;
+    return (hashedKey * 163) % this.table.length;
   }
 
   set({ key, size }) {
@@ -20,6 +20,18 @@ class HashTable {
     }
     this.table[index].push([key, size]);
     return this;
+  }
+
+  get(key) {
+    const index = this._hash(key);
+    if (this.table[index]) {
+      for (let i = 0; i < this.table[index].length; i++) {
+        if (this.table[index][i][0] === key) {
+          return this.table[index][i][1];
+        }
+      }
+    }
+    return undefined;
   }
 }
 
@@ -38,14 +50,26 @@ describe('HashTable', () => {
     done();
   });
 
-  it('should set new items in the hash table', done => {
+  xit('should set new items in the hash table', done => {
     hash.set({ key: 'washers', size: 10 });
     hash.set({ key: 'brush', size: 100 });
     hash.set({ key: 'nails', size: 1000 });
     hash.set({ key: 'lumber', size: 1 });
     hash.set({ key: 'bolts', size: 15 });
     hash.set({ key: 'screw', size: 150 });
-    expect(hash.table[5][0][1]).to.equal(100);
+    expect(hash.table[0][0][0]).to.equal('lumber');
+    done();
+  });
+
+  xit('should get item based of the key provided', done => {
+    hash.set({ key: 'washers', size: 10 });
+    hash.set({ key: 'brush', size: 100 });
+    hash.set({ key: 'nails', size: 1000 });
+    hash.set({ key: 'lumber', size: 1 });
+    hash.set({ key: 'bolts', size: 15 });
+    hash.set({ key: 'screw', size: 150 });
+    hash.set({ key: 'pinot', size: 11 });
+    expect(hash.get('paint')).to.equal(10);
     done();
   });
 });
