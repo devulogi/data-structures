@@ -33,6 +33,14 @@ class HashTable {
     }
     return undefined;
   }
+
+  keys() {
+    const allKeys = [];
+    this.table.forEach(index => {
+      index.forEach(item => allKeys.push(item[0]));
+    });
+    return allKeys;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -70,6 +78,11 @@ describe('HashTable', () => {
     hash.set({ key: 'screw', size: 150 });
     hash.set({ key: 'pinot', size: 11 });
     expect(hash.get('paint')).to.equal(10);
+    done();
+  });
+
+  xit('should get all keys in hash table', done => {
+    expect(hash.keys().length).to.equal(1);
     done();
   });
 });
