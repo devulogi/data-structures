@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const assert = require('assert');
 
 class Node {
   constructor(value) {
@@ -12,7 +13,7 @@ class DoublyLinkedList {
   constructor(value) {
     const newNode = new Node(value);
     this.head = newNode;
-    this.tail = this.head;
+    this.tail = newNode;
     this.length = 1;
   }
 
@@ -56,6 +57,23 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  shift() {
+    if (this.length === 0) {
+      return undefined;
+    }
+    const temp = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = temp.next;
+      this.head.prev = null;
+      temp.next = null;
+    }
+    this.length--;
+    return this;
+  }
 }
 
 // ------------------------------------------------------- //
@@ -88,6 +106,14 @@ describe('DoublyLinkedList', () => {
   xit('should add a new value at the beginning', done => {
     expect(newDoublyLinkedList.unshift(7).head.value).to.equal(7);
     expect(newDoublyLinkedList.length).to.equal(2);
+    done();
+  });
+
+  xit('should remove the value at the beginning', done => {
+    newDoublyLinkedList.shift();
+    expect(newDoublyLinkedList.head).to.be.null;
+    expect(newDoublyLinkedList.tail).to.be.null;
+    expect(newDoublyLinkedList.length).to.be.equal(0);
     done();
   });
 });
