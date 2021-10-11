@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const Queue = require('./Queue.spec');
 
 class Node {
   constructor(value) {
@@ -98,6 +99,22 @@ class BinarySearchTree {
       current = current.right;
     }
     return current.value;
+  }
+
+  bfs() {
+    let currentNode = this.root;
+    const queue = new Queue(currentNode);
+    const result = [];
+    while (queue.length) {
+      currentNode = queue.dequeue();
+      result.push(currentNode.value);
+      if (currentNode.left) {
+        queue.enqueue(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.enqueue(currentNode.right);
+      }
+    }
   }
 }
 
