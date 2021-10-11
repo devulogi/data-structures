@@ -30,8 +30,13 @@ class Queue {
 
   dequeue() {
     if (this.length === 0) return false;
-    let temp = this.last;
-    this.last = this.last.next;
+    let temp = this.first;
+    if(this.length === 1) {
+      this.last = null;
+    } else {
+      this.first = this.first.next;
+      temp.next = null;
+    }
     this.length--;
     return temp;
   }
