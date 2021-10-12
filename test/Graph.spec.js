@@ -78,4 +78,18 @@ describe('Graph', () => {
     expect(graph.adjacencyList['1'] && graph.adjacencyList['2']).to.be.empty;
     done();
   });
+
+  xit('should remove vertex and edges', done => {
+    graph.addVertex('1');
+    graph.addVertex('2');
+    graph.addVertex('3');
+    graph.addVertex('4');
+    graph.addEdge('1', '2');
+    graph.addEdge('2', '3');
+    graph.addEdge('3', '4');
+    graph.addEdge('4', '1');
+    graph.removeVertex('4');
+    expect(graph.adjacencyList['4']).to.be.undefined;
+    done();
+  });
 });
