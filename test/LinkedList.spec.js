@@ -1,4 +1,3 @@
-const { describe } = require('mocha');
 const { expect } = require('chai');
 
 class Node {
